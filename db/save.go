@@ -6,7 +6,7 @@ func Insert(collection string, data any) error {
 	client, ctx := getConnection()
 	defer client.Disconnect(ctx)
 
-	c := client.Database("webform").collection(collection)
+	c := client.Database("webform").Collection(collection)
 
 	_, err := c.InsertOne(context.Background(), data)
 

@@ -1,15 +1,15 @@
 package db
 
-import ( 
+import (
 	"context"
-	"time"
 	"log"
+	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func getConnection() client *mongo.Client, ctx context.Context {
+func getConnection() (client *mongo.Client, ctx context.Context) {
 	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		log.Fatal(err)
@@ -18,8 +18,8 @@ func getConnection() client *mongo.Client, ctx context.Context {
 	ctx, _ = context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
 	if err != nil {
-		log.Fatal(err) 
+		log.Fatal(err)
 	}
 
-	return 
+	return
 }
